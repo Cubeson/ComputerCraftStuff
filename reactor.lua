@@ -2,6 +2,8 @@ local reactor = peripheral.wrap("back")
 local monitor = peripheral.wrap("top")
 monitor.clear()
 
+highestRFpT = 0
+
 while(1) do
   y = 1
   
@@ -14,24 +16,28 @@ while(1) do
   end
   y = y + 1
   
-  -- RF stored / Max
+  -- RF stored / Max / Percentage
   monitor.setCursorPos(1, y)
-  y = y + 1
   currentEnergy = reactor.getEnergyStored()
   monitor.write(tostring(currentEnergy))
   monitor.write(" RF / ")
   maxEnergy = reactor.getEnergyCapacity()
   monitor.write(tostring(maxEnergy))
-  monitor.write(" RF")
+  monitor.write(" RF : ")
+  monitor.write(tostring(math.floor(currentEnergy/maxEnergy) * 100)
+  monitor.write("%")
+  y = y + 1
   
-  -- Fuel / Max
+  -- Fuel / Max / Percentage
   monitor.setCursorPos(1, y)
   currentFuel = reactor.getFuelAmount()
   monitor.write(tostring(currentFuel))
   monitor.write(" / ")
   maxFuel = reactor.getFuelAmountMax()
   monitor.write(tostring(maxFuel))
-  monitor.write(" Fuel")
+  monitor.write(" Fuel : ")
+  monitor.write(tostring(math.floor(currentFuel/maxFuel) * 100)
+  monitor.write("%")
   y = y + 1
   
   -- RF/t
@@ -39,6 +45,16 @@ while(1) do
   RFgeneration = reactor.getEnergyProducedLastTick()
   monitor.write(tostring(math.floor(RFgeneration)))
   monitor.write(" RF/t")
+  y = y + 1
+  
+  if(RFgeneration > highestRFpT) then
+    highestRFpT = RFgeneration
+  end
+  
+  -- highest RF/t
+  monitor.setCursorPos(1, y)
+  monitor.write(tostring(math.floor(highestRFpT)))
+  monitor.write(" peak RF/t")
   y = y + 1
   
   -- Controller
