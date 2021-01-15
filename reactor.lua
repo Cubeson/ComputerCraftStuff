@@ -3,10 +3,13 @@ local monitor = peripheral.wrap("top")
 monitor.clear()
 
 while(1) do
-  -- RF stored
+  -- RF stored / Max
   monitor.setCursorPos(1, 1)
   currentEnergy = reactor.getEnergyStored()
   monitor.write(tostring(currentEnergy))
+  monitor.write(" RF / ")
+  maxEnergy = reactor.getEnergyCapacity()
+  monitor.write(tostring(maxEnergy))
   monitor.write(" RF")
   
   -- Fuel
@@ -18,7 +21,7 @@ while(1) do
   -- RF/t
   monitor.setCursorPos(1, 3)
   RFgeneration = reactor.getEnergyProducedLastTick()
-  monitor.write(tostring(RFgeneration))
+  monitor.write(tostring(math.floor(RFgeneration)))
   monitor.write(" RF/t")
   
   sleep(0.5)
