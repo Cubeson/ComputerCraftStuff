@@ -3,8 +3,19 @@ local monitor = peripheral.wrap("top")
 monitor.clear()
 
 while(1) do
+  y = 1
+  
+  -- Is active
+  if(reactor.getActive == true) then
+    monitor.write("ON")
+    else
+    monitor.write("OFF")
+  end
+  y = y + 1
+  
   -- RF stored / Max
-  monitor.setCursorPos(1, 1)
+  monitor.setCursorPos(1, y)
+  y = y + 1
   currentEnergy = reactor.getEnergyStored()
   monitor.write(tostring(currentEnergy))
   monitor.write(" RF / ")
@@ -13,16 +24,18 @@ while(1) do
   monitor.write(" RF")
   
   -- Fuel
-  monitor.setCursorPos(1, 2)
+  monitor.setCursorPos(1, y)
   currentFuel = reactor.getFuelAmount()
   monitor.write(tostring(currentFuel))
   monitor.write(" Fuel")
+  y = y + 1
   
   -- RF/t
-  monitor.setCursorPos(1, 3)
+  monitor.setCursorPos(1, y)
   RFgeneration = reactor.getEnergyProducedLastTick()
   monitor.write(tostring(math.floor(RFgeneration)))
   monitor.write(" RF/t")
+  y = y + 1
   
   -- Controller
   if( (currentEnergy / maxEnergy) > 0.9 ) then
