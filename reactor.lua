@@ -24,10 +24,13 @@ while(1) do
   monitor.write(tostring(maxEnergy))
   monitor.write(" RF")
   
-  -- Fuel
+  -- Fuel / Max
   monitor.setCursorPos(1, y)
   currentFuel = reactor.getFuelAmount()
   monitor.write(tostring(currentFuel))
+  monitor.write(" / ")
+  maxFuel = reactor.getFuelAmountMax()
+  monitor.write(tostring(maxFuel))
   monitor.write(" Fuel")
   y = y + 1
   
