@@ -11,7 +11,7 @@ while(1) do
   monitor.setCursorPos(1, 2)
   currentFuel = reactor.getFuelAmount()
   monitor.write(tostring(currentFuel))
-  current.write(" Fuel")
+  monitor.write(" Fuel")
   
   sleep(0.5)
   monitor.clear()
