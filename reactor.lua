@@ -3,6 +3,7 @@ local monitor = peripheral.wrap("top")
 monitor.clear()
 
 highestRFpT = 0
+threshold = 0.9
 
 while(1) do
   y = 1
@@ -61,11 +62,14 @@ while(1) do
   monitor.write(" peak RF/t")
   y = y + 1
   
+  
   -- Controller
-  if( (currentEnergy / maxEnergy) > 0.9 ) then
-    reactor.setActive(false)    
+  if( (currentEnergy / maxEnergy) > threshold ) then
+    reactor.setActive(false)
+    threshold = 0.9
   else
-    reactor.setActive(true)  
+    reactor.setActive(true)
+    threshold =0.95
   end
   
   sleep(0.5)
