@@ -6,6 +6,7 @@ while(1) do
   y = 1
   
   -- Is active
+  monitor.setCursorPos(1, y)
   if(reactor.getActive == true) then
     monitor.write("ON")
     else
