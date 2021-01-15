@@ -6,5 +6,5 @@ monitor.setCursorPos(1, 1)
 while(1) do
   monitor.clear()
   currentEnergy = reactor.getEnergyStored
-  monitor.wrtie(currentEnergy,"RF")
+  monitor.write(currentEnergy,"RF")
 end
