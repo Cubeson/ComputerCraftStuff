@@ -24,7 +24,9 @@ while(1) do
   maxEnergy = reactor.getEnergyCapacity()
   monitor.write(tostring(maxEnergy))
   monitor.write(" RF : ")
-  monitor.write(tostring(math.floor(currentEnergy/maxEnergy) * 100) )
+  pRF = tostring(currentEnergy/maxEnergy*100)
+  pRF = string.format("%3.2f",pRF)
+  monitor.write(pRF)
   monitor.write("%")
   y = y + 1
   
@@ -36,7 +38,9 @@ while(1) do
   maxFuel = reactor.getFuelAmountMax()
   monitor.write(tostring(maxFuel))
   monitor.write(" Fuel : ")
-  monitor.write(tostring(math.floor(currentFuel/maxFuel) * 100) )
+  pFuel = tostring(currentFuel/maxFuel*100)
+  pFuel = string.format("%3.2f",pFuel)
+  monitor.write(pFuel)
   monitor.write("%")
   y = y + 1
   
