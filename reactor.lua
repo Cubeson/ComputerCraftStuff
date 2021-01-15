@@ -24,6 +24,13 @@ while(1) do
   monitor.write(tostring(math.floor(RFgeneration)))
   monitor.write(" RF/t")
   
+  -- Controller
+  if( (currentEnergy / maxEnergy) > 0.9 ) then
+    reactor.setActive(false)    
+  else
+    reactor.setActive(true)  
+  end
+  
   sleep(0.5)
   monitor.clear()
 end
